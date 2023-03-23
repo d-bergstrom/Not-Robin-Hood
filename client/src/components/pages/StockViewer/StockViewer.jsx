@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./StockViewer.module.scss";
 import people from "../../../assets/icons/people-icon.svg";
 import creditCard from "../../../assets/icons/credit-card-icon.svg";
@@ -6,12 +6,14 @@ import { fakeData } from "../../../utils/fakeData"; //Temporary Fake Data used f
 import Graph from "../../UI/Graph/Graph";
 import BuyBox from "../../UI/BuyBox/BuyBox";
 import Filter from "../../UI/Filter/Filter";
+// import axios from "axios"
 
 // import styles from "./Account.module.scss";
 import Hero from "../../UI/Hero/Hero";
 
-const AppFundsPopup = () => {
+const StockViewer = () => {
   const stockPrice = "59.71";
+
   const [stockData, setStockData] = useState({
     labels: fakeData.map((data) => data.day),
     datasets: [
@@ -53,4 +55,4 @@ const AppFundsPopup = () => {
   );
 };
 
-export default AppFundsPopup;
+export default StockViewer;

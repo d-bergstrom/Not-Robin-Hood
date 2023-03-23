@@ -5,6 +5,7 @@ import Hero from "../../UI/Hero/Hero";
 import StockItem from "../../UI/StockItem/StockItem";
 import DownVectorIcon from "../../../assets/icons/down-vector.svg";
 import { stockData } from "../../../utils/fakeData";
+// import axios from "axios"
 
 const Markets = () => {
   // declares a new state variable setSortedStocks and initializes it with the value false
@@ -55,12 +56,10 @@ const Markets = () => {
           <button className={globalStyles.sortButton} onClick={toggleSort}>
             {/* Change button text depending on the sortOrder state */}
             {/* {sortOrder === "asc" ? "Sort A-Z" : "Sort Z-A"} */}
-            <span className={styles.buttonText}>
-              {buttonText}
-            </span>
-            <img 
-              src={DownVectorIcon} 
-              alt="Vector" 
+            <span className={styles.buttonText}>{buttonText}</span>
+            <img
+              src={DownVectorIcon}
+              alt="Vector"
               className={sortedStocks ? styles.rotated : ""}
             />
           </button>

@@ -3,9 +3,8 @@ import styles from "./AddFunds.module.scss";
 import globalStyles from "../../../styles/main.module.scss";
 import people from "../../../assets/icons/people-icon.svg";
 import creditCard from "../../../assets/icons/credit-card-icon.svg";
-import { useDispatch } from "react-redux";
-import { increment } from "../../../redux/slices/balanceSlice";
 import { checkIfNumber } from "../../../utils/helpers";
+import { useUpdateBalanceMutation } from "../../../redux/slices/userApiSlice";
 
 const AddFunds = ({ toggle }) => {
   // Currency State
@@ -22,9 +21,6 @@ const AddFunds = ({ toggle }) => {
     cad: "C$",
   };
 
-  // Creating Dispatch
-  const dispatch = useDispatch();
-
   // Currency Input Handler
   const currencyHandler = (e) => {
     setCurrency(e.target.value);
@@ -36,8 +32,10 @@ const AddFunds = ({ toggle }) => {
   };
 
   // HANDLE PAYMENTS
+  const updateBalance = useUpdateBalanceMutation();
+  console.log(useUpdateBalanceMutation());
   const paymentHandler = () => {
-    dispatch(increment(amount));
+    updateBalance();
     toggle();
   };
 

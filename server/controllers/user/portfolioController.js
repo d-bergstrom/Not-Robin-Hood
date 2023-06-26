@@ -29,8 +29,8 @@ class PortfolioController {
       totalCost,
       date
     );
-    const averageCost = totalCost / share;
-    const totalReturn = 0;
+    const AVERAGE_COST = totalCost / share;
+    const TOTAL_RETURN = 0;
 
     /*
     total cost = amount of stocks * the price it was purchased (e.x 06/01/23)
@@ -38,24 +38,49 @@ class PortfolioController {
       
     
     */
-    const equity = stockPrice * share;
-    try {
-      const query =
-        "INSERT INTO user_portfolio_stocks (user_id, id, name, symbol, stockPrice, share, totalCost, averageCost, totalReturn, equity, purchased_at) VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?, ?, ?)";
-      const [rows] = await connection.query(query, [
-        userID,
-        id,
-        company,
-        symbol,
+    const EQUITY = stockPrice * share;
+    const query =
+      "SELECT * FROM user_portfolio_stocks WHERE user_id = ? AND symbol = ?";
+    const [rows] = await connection.query(query, [userID, symbol]);
+    const match = rows[0];
+    console.log("Matched stock", match);
+    if (match) {
+      const updatedShare = share;
+      const updateStockQuery =
+        "UPDATE user_portfolio_stocks SET share = share + ?, stockPrice = stockPrice + ?, totalCost = totalCost + ?, averageCost = (totalCost + ?) / (share + ?), purchased_at = ?, equity = equity + ? WHERE user_id = ? AND id = ? AND symbol = ?";
+      const [updateRows] = await connection.query(updateStockQuery, [
+        updatedShare,
         stockPrice,
-        share,
         totalCost,
-        averageCost,
-        totalReturn,
-        equity,
+        totalCost,
+        updatedShare,
         date,
+        EQUITY,
+        userID,
+        match.id,
+        symbol,
       ]);
-      res.json(rows);
+      res.json(updateRows);
+    }
+    try {
+      if (!match) {
+        const query =
+          "INSERT INTO user_portfolio_stocks (user_id, id, name, symbol, stockPrice, share, totalCost, averageCost, totalReturn, equity, purchased_at) VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?, ?, ?)";
+        const [rows] = await connection.query(query, [
+          userID,
+          id,
+          company,
+          symbol,
+          stockPrice,
+          share,
+          totalCost,
+          AVERAGE_COST,
+          TOTAL_RETURN,
+          EQUITY,
+          date,
+        ]);
+        res.json(rows);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -63,7 +88,8 @@ class PortfolioController {
   async modifyPortfolioStock(req, res, next) {
     // Establishing connection to our PlanetScale DB
     const connection = await connectDB();
-    const { userID, id, share, symbol, stockPrice, totalCost } = req.body;
+    const { userID, id, share, symbol, stockPrice, totalCost, date, company } =
+      req.body;
     console.log(
       "Info for stock modification:",
       userID,
@@ -73,13 +99,15 @@ class PortfolioController {
       stockPrice,
       totalCost
     );
-    const updatedShare = share;
+    const EQUITY = stockPrice * share;
     try {
       const query =
-        "UPDATE user_portfolio_stocks SET share = share + ?, stockPrice = stockPrice + ?, totalCost = totalCost + ? WHERE user_id = ? AND id = ? AND symbol = ?;";
+        "UPDATE user_portfolio_stocks SET share = ?, stockPrice = stockPrice - ?, totalCost = totalCost - ?, purchased_at = ?, equity = equity - ? WHERE user_id = ? AND id = ? AND symbol = ?";
       const [rows] = await connection.query(query, [
-        updatedShare,
+        share,
         stockPrice,
+        totalCost,
+        date,
         totalCost,
         userID,
         id,
@@ -105,7 +133,18 @@ class PortfolioController {
     }
   }
 
-  async getPortfolioTotalValue(req, res, next) {}
+  async setTotalReturnValues(req, res, next) {
+    // Establishing connection to our PlanetScale DB
+    const connection = await connectDB();
+    const { totalReturn, symbol } = req.body;
+    try {
+      const query = `UPDATE user_portfolio_stocks SET totalReturn = ? WHERE symbol = ?`;
+      const [rows] = await connection.query(query, [totalReturn, symbol]);
+      res.json(rows);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new PortfolioController();

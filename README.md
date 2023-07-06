@@ -2,6 +2,9 @@
 
 A stock and trade app similar to Robin Hood
 
+<h2> &nbsp;Hosted Link:</h2>
+https://not-robin-hood.vercel.app/login
+
 <h2> 🚀 &nbsp;Tech stack:</h2>
 
 <h3>Front-end</h3>

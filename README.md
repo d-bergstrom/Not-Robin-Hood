@@ -2,12 +2,14 @@
 
 A stock and trade app similar to Robin Hood. This project was requested by Bay Valley Tech through Stanislaus County Workforce Development (SCWD).
 
+* **HOSTED LINK TO PROJECT:** 
+
 ## Tech stack 🚀 
-**Front End:** HTML, JavaScript, React, Sass, Redux-Toolkit, RTK-Query
+* **Front End:** HTML, JavaScript, React, Sass, Redux-Toolkit, RTK-Query
 
-**Back End:** Node.JS, Express, MySQL
+* **Back End:** Node.JS, Express, MySQL
 
-**Hosting:** Vercel (Front End + Back End), PlanetScale (MySQL Database)
+* **Hosting:** Vercel (Front End + Back End), PlanetScale (MySQL Database)
 
 ## APIs
 * **Finnhub** - Stock Data and Stock History (Limit: 30 API calls/ second)
@@ -16,7 +18,21 @@ A stock and trade app similar to Robin Hood. This project was requested by Bay V
 
 
 ## Design
-[Figma](https://www.figma.com/file/sGAk3EHSSUAvS31PYW7mnZ/HobinRood-(Copy)?type=design&node-id=0-1&mode=design&t=b2oKGhRaSUvREjs3-0)
+&nbsp;&nbsp;&nbsp; [Figma Wireframe](https://www.figma.com/file/sGAk3EHSSUAvS31PYW7mnZ/HobinRood-(Copy)?type=design&node-id=0-1&mode=design&t=b2oKGhRaSUvREjs3-0)
+
+
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
 
 ## Run Locally
 
@@ -70,15 +86,3 @@ REFRESH_TOKEN_EXPIRY='1w'
 # COOKIE EXPIRES
 COOKIE_EXPIRY='1w'
 ```
-
-## Screenshots
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)

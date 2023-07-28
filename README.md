@@ -1,10 +1,10 @@
 # Hobin Rood
 
-A stock and trade app similar to Robin Hood. This project was requested by Bay Valley Tech through Stanislaus County Workforce Development (SCWD).
+A stock trading app similar to Robin Hood. This project was requested by Bay Valley Tech through Stanislaus County Workforce Development (SCWD).
 
 * **HOSTED LINK TO PROJECT:** 
 
-## Tech stack 🚀 
+## Tech Stack 🚀 
 * **Front End:** HTML, JavaScript, React, Sass, Redux-Toolkit, RTK-Query
 
 * **Back End:** Node.JS, Express, MySQL

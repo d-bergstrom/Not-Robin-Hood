@@ -20,7 +20,7 @@ const app = express();
 // Handling options credentials check - before CORS!
 // and fetching cookies credentials requirement
 app.use(credentials);
-app.use(cors({origin: 'https://not-robin-hood-server.vercel.app'}));
+app.use(cors(corsOptions));
 
 // Parsing incoming requests with JSON payloads
 app.use(express.json());

@@ -20,7 +20,7 @@ const app = express();
 // Handling options credentials check - before CORS!
 // and fetching cookies credentials requirement
 app.use(credentials);
-app.use(cors(corsOptions));
+app.use(cors({origin: process.env.CLIENT_URL}));
 
 // Parsing incoming requests with JSON payloads
 app.use(express.json());
